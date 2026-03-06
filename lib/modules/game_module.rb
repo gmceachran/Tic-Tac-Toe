@@ -36,7 +36,7 @@ module GameModules
 
     def announce_draw(board_state)
       new_event
-      puts 'Cat\'s Game!'
+      puts "Cat's Game!"
       puts
       render_board(board_state)
       pause

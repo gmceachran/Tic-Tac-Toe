@@ -14,7 +14,7 @@ module MainModules
     def instructions
       announce('This game uses a coordinate system to select slots on the tic-tac-toe board.', 3)
 
-      puts 'Here\'s what that looks like:'
+      puts "Here's what that looks like:"
       puts
       puts <<~BOARD
         ╔════╦════╦════╗
@@ -40,7 +40,7 @@ module MainModules
       end
 
       puts
-      puts 'Great job! You\'re ready to play.'
+      puts "Great job! You're ready to play."
     end
 
     def onboarding
@@ -58,7 +58,7 @@ module MainModules
       token_choice = ''
 
       until token_choice == 'x' || token_choice == 'o'
-        puts 'Player 1, enter \'x\' or \'o\' to choose your token:'
+        puts "Player 1, enter 'x' or 'o' to choose your token:"
         puts
         token_choice = gets.chomp
       end
