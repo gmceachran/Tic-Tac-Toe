@@ -17,7 +17,6 @@ module Utils
     pause(seconds)
   end
 
-  # add gets.chomp, consider renaming to return correct value or something similar
   def try_again
     puts 'Not quite, try again:'
   end

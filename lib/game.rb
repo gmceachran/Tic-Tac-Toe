@@ -49,12 +49,10 @@ class Game
     until space_available?(chosen_slot)
       try_again
       chosen_slot = gets.chomp
-      # this violates keeping all input in the modules, make a new method in the modules
     end
 
     update_board_state(@active_player, chosen_slot)
     @cats_game = true unless @board_state.any? { |cell| cell == ' ' }
-      # The cats_game logic has a bug. It only checks for a draw after a move is made, but it doesn't account for the fact that a winning move could fill the last cell. If the last move is a winning move, @cats_game will be set to true before won? is checked in main.rb, meaning over could announce a draw instead of a win.
     @active_player, @inactive_player = @inactive_player, @active_player
   end
 

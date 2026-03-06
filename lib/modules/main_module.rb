@@ -16,7 +16,6 @@ module MainModules
 
       puts 'Here\'s what that looks like:'
       puts
-      # as noted below, dynamically render the coords from game, makes it easier to change coords in future
       puts <<~BOARD
         ╔════╦════╦════╗
         ║ a1 ║ a2 ║ a3 ║
@@ -35,7 +34,6 @@ module MainModules
       selection = gets.chomp
 
       until selection == 'b2'
-        # would technically be better to have this reverence game.coords or something similar, as this could break if I ever update the coords system
         puts
         try_again
         selection = gets.chomp
