@@ -1,0 +1,68 @@
+require_relative 'modules/game_module'
+
+class Game
+  include GameModules::Output
+  include GameModules::ReturnInput
+
+  COORDS = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
+  WIN_CONDITIONS = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
+  ]
+
+  def initialize(active_player, inactive_player)
+    @active_player = active_player
+    @inactive_player = inactive_player
+    @board_state = Array.new(9, ' ')
+    @cats_game = false
+  end
+
+  def cats_game?
+    @cats_game
+  end
+
+  private
+
+  def space_available?(coord)
+    COORDS.include?(coord) && @board_state[COORDS.index(coord)] == ' '
+  end
+
+  def update_board_state(player, choice)
+    @board_state[COORDS.index(choice)] = player.token
+  end
+
+  public
+
+  def won?
+    WIN_CONDITIONS.any? do |condition| 
+      condition.all? { |i| @board_state[i] == @inactive_player.token } 
+    end
+  end
+
+  def player_turn
+    announce_beginning_of_turn(@active_player.name)
+    render_board(@board_state)
+    pause
+    chosen_slot = player_slot_choice
+
+    until space_available?(chosen_slot)
+      try_again
+      chosen_slot = gets.chomp
+      # this violates keeping all input in the modules, make a new method in the modules
+    end
+
+    update_board_state(@active_player, chosen_slot)
+    @cats_game = true unless @board_state.any? { |cell| cell == ' ' }
+      # The cats_game logic has a bug. It only checks for a draw after a move is made, but it doesn't account for the fact that a winning move could fill the last cell. If the last move is a winning move, @cats_game will be set to true before won? is checked in main.rb, meaning over could announce a draw instead of a win.
+    @active_player, @inactive_player = @inactive_player, @active_player
+  end
+
+  def over
+    if @cats_game
+      announce_draw(@board_state)
+    else
+      announce_win(@inactive_player.name, @board_state)
+    end
+  end
+end
