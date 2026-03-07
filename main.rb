@@ -5,7 +5,7 @@ include MainInterface
 
 def play_game
   play_again = true
-  onboarding
+  # onboarding
 
   while play_again 
     choices = x_or_o

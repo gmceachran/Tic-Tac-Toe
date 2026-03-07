@@ -20,18 +20,6 @@ class Game
     @cats_game
   end
 
-  private
-
-  def space_available?(coord)
-    COORDS.include?(coord) && @board_state[COORDS.index(coord)] == ' '
-  end
-
-  def update_board_state(player, choice)
-    @board_state[COORDS.index(choice)] = player.token
-  end
-
-  public
-
   def won?
     WIN_CONDITIONS.any? do |condition| 
       condition.all? { |i| @board_state[i] == @inactive_player.token } 
@@ -42,11 +30,7 @@ class Game
     announce_beginning_of_turn(@active_player.name)
     render_board(@board_state)
     # pause
-    chosen_slot = prompt('Choose an empty space:')
-
-    until space_available?(chosen_slot)
-      chosen_slot = prompt
-    end
+    chosen_slot = space_validation
 
     update_board_state(@active_player, chosen_slot)
     @cats_game = true unless @board_state.any? { |cell| cell == ' ' }
@@ -59,5 +43,31 @@ class Game
     else
       announce_win(@inactive_player.name, @board_state)
     end
+  end
+
+  private
+
+  def update_board_state(player, choice)
+    @board_state[COORDS.index(choice)] = player.token
+  end
+
+  def space_validation
+    chosen_slot = prompt('Choose an empty space:')
+
+    loop do
+      unless COORDS.include?(chosen_slot)
+        chosen_slot = prompt('That space does not exist!')
+        next
+      end
+
+      unless @board_state[COORDS.index(chosen_slot)] == ' '
+        chosen_slot = prompt('That space is already taken!')
+        next
+      end
+
+      break
+    end
+
+    chosen_slot
   end
 end
