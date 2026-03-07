@@ -1,9 +1,9 @@
 require_relative 'lib/game'
 require_relative 'lib/player'
 require_relative 'lib/modules/main_module'
+include MainInterface
 
 def play_game
-  extend MainInterface
   play_again = true
   onboarding
 
