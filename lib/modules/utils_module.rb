@@ -17,12 +17,15 @@ module Utils
     pause(seconds)
   end
 
-  def try_again
-    puts 'Not quite, try again:'
+  def prompt(prompt='Not quite, try again:')
+    puts
+    puts prompt
+    puts
+    gets.chomp
   end
 
   def new_event(seconds = 1)
-    pause(seconds)
+    # pause(seconds)
     divider
   end
 end

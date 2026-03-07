@@ -25,13 +25,9 @@ module MainInterface
     BOARD
     puts
     pause(3)
-    puts 'Try selecting the middle square. Type the matching coordinates into the terminal:'
-    puts
-    selection = gets.chomp
+    selection = prompt('Try selecting the middle square. Type the matching coordinates into the terminal:')
     until selection == 'b2'
-      puts
-      try_again
-      selection = gets.chomp
+      selection = prompt
     end
     puts
     puts "Great job! You're ready to play."
@@ -46,12 +42,10 @@ module MainInterface
 
 
   def x_or_o
-    token_choice = ''
+    token_choice = prompt("Player 1, enter 'x' or 'o' to choose your token:")
 
     until token_choice == 'x' || token_choice == 'o'
-      puts "Player 1, enter 'x' or 'o' to choose your token:"
-      puts
-      token_choice = gets.chomp
+      token_choice = prompt
     end
 
     player2 = token_choice == 'x' ? 'o' : 'x'
@@ -59,11 +53,11 @@ module MainInterface
   end
   
   def another_game
-    answer = ''
     pause
+    answer = prompt('Play again? (y / n)')
+
     until answer == 'y' || answer == 'n'
-      puts 'Play again? (y / n)'
-      answer = gets.chomp
+      answer = prompt
     end
     answer == 'y'
   end
