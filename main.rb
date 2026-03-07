@@ -8,8 +8,8 @@ def play_game
   intro
 
   while play_again 
-    choices = x_or_o
-    player1, player2 = Player.new("Player 1", choices[:player1]), Player.new("Player 2", choices[:player2])
+    token_choices = x_or_o
+    player1, player2 = Player.new("Player 1", token_choices[:player1]), Player.new("Player 2", token_choices[:player2])
     game = Game.new(player1, player2)
     game.player_turn until game.won? || game.cats_game?
     game.over
