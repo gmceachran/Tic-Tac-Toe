@@ -3,8 +3,7 @@ require_relative 'lib/player'
 require_relative 'lib/modules/main_module'
 
 def play_game
-  extend MainModules::Output
-  extend MainModules::ReturnInput
+  extend MainInterface
   play_again = true
   onboarding
 

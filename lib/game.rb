@@ -1,9 +1,7 @@
 require_relative 'modules/game_module'
 
 class Game
-  include GameModules::Output
-  include GameModules::ReturnInput
-
+  include GameInterface
   COORDS = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
   WIN_CONDITIONS = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
