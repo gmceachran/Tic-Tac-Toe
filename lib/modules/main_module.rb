@@ -33,7 +33,7 @@ module MainInterface
     puts "Great job! You're ready to play."
   end
 
-  def onboarding
+  def intro
     welcome
     instructions
     divider
