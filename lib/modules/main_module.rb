@@ -30,8 +30,7 @@ module MainInterface
     selection = gets.chomp
     until selection == 'b2'
       puts
-      try_again
-      selection = gets.chomp
+      selection = try_again
     end
     puts
     puts "Great job! You're ready to play."
@@ -46,12 +45,12 @@ module MainInterface
 
 
   def x_or_o
-    token_choice = ''
+    puts "Player 1, enter 'x' or 'o' to choose your token:"
+    puts
+    token_choice = gets.chomp
 
     until token_choice == 'x' || token_choice == 'o'
-      puts "Player 1, enter 'x' or 'o' to choose your token:"
-      puts
-      token_choice = gets.chomp
+      token_choice = try_again
     end
 
     player2 = token_choice == 'x' ? 'o' : 'x'
@@ -59,11 +58,12 @@ module MainInterface
   end
   
   def another_game
-    answer = ''
     pause
+    puts 'Play again? (y / n)'
+    answer = gets.chomp
+
     until answer == 'y' || answer == 'n'
-      puts 'Play again? (y / n)'
-      answer = gets.chomp
+      answer = try_again
     end
     answer == 'y'
   end

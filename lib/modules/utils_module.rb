@@ -19,10 +19,11 @@ module Utils
 
   def try_again
     puts 'Not quite, try again:'
+    gets.chomp
   end
 
   def new_event(seconds = 1)
-    pause(seconds)
+    # pause(seconds)
     divider
   end
 end

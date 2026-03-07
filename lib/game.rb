@@ -41,12 +41,11 @@ class Game
   def player_turn
     announce_beginning_of_turn(@active_player.name)
     render_board(@board_state)
-    pause
+    # pause
     chosen_slot = player_slot_choice
 
     until space_available?(chosen_slot)
-      try_again
-      chosen_slot = gets.chomp
+      chosen_slot = try_again
     end
 
     update_board_state(@active_player, chosen_slot)
