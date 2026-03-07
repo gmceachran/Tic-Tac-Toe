@@ -17,8 +17,10 @@ module Utils
     pause(seconds)
   end
 
-  def try_again
-    puts 'Not quite, try again:'
+  def prompt(prompt='Not quite, try again:')
+    puts
+    puts prompt
+    puts
     gets.chomp
   end
 

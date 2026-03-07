@@ -5,7 +5,7 @@ require_relative 'lib/modules/main_module'
 def play_game
   extend MainInterface
   play_again = true
-  # onboarding
+  onboarding
 
   while play_again 
     choices = x_or_o

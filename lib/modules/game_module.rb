@@ -41,9 +41,4 @@ module GameInterface
     pause
     puts 'Game over'
   end
-
-  def player_slot_choice
-    puts 'Choose an empty space:'
-    gets.chomp
-  end
 end

@@ -42,10 +42,10 @@ class Game
     announce_beginning_of_turn(@active_player.name)
     render_board(@board_state)
     # pause
-    chosen_slot = player_slot_choice
+    chosen_slot = prompt('Choose an empty space:')
 
     until space_available?(chosen_slot)
-      chosen_slot = try_again
+      chosen_slot = prompt
     end
 
     update_board_state(@active_player, chosen_slot)
