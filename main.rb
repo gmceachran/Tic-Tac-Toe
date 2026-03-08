@@ -5,7 +5,7 @@ include MainInterface
 
 def play_game
   play_again = true
-  # intro
+  intro(Game::COORDS)
 
   while play_again 
     token_choices = x_or_o

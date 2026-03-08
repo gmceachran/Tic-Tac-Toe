@@ -31,7 +31,7 @@ class Game
   def player_turn
     announce_beginning_of_turn(@active_player.name)
     render_board(@board_state)
-    # pause
+    pause
     chosen_slot = space_validation
 
     update_board_state(@active_player, chosen_slot)

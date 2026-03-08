@@ -2,6 +2,9 @@ require_relative 'utils_module'
 
 module MainInterface
   include Utils
+  TOP_BORDER = '╔════╦════╦════╗'
+  MID_BORDER = '╠════╬════╬════╣'
+  BOT_BORDER = '╚════╩════╩════╝'
 
   def welcome
     divider
@@ -10,32 +13,32 @@ module MainInterface
     pause(2)
   end
 
-  def instructions
+  def instructions(c)
     announce('This game uses a coordinate system to select slots on the tic-tac-toe board.', 3)
     puts "Here's what that looks like:"
     puts
     puts <<~BOARD
-      ╔════╦════╦════╗
-      ║ a1 ║ a2 ║ a3 ║
-      ╠════╬════╬════╣
-      ║ b1 ║ b2 ║ b3 ║
-      ╠════╬════╬════╣
-      ║ c1 ║ c2 ║ c3 ║
-      ╚════╩════╩════╝
+      #{TOP_BORDER}
+      ║ #{c[0]} ║ #{c[1]} ║ #{c[2]} ║
+      #{MID_BORDER}
+      ║ #{c[3]} ║ #{c[4]} ║ #{c[5]} ║
+      #{MID_BORDER}
+      ║ #{c[6]} ║ #{c[7]} ║ #{c[8]} ║
+      #{BOT_BORDER}
     BOARD
     puts
     pause(3)
     selection = prompt('Try selecting the middle square. Type the matching coordinates into the terminal:')
-    until selection == 'b2'
+    until selection == c[4]
       selection = prompt
     end
     puts
     puts "Great job! You're ready to play."
   end
 
-  def intro
+  def intro(coords)
     welcome
-    instructions
+    instructions(coords)
     divider
     pause(2)
   end
