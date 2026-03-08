@@ -2,6 +2,8 @@ require_relative 'modules/game_module'
 
 class Game
   include GameInterface
+  attr_reader :inactive_player
+  
   COORDS = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
   WIN_CONDITIONS = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -20,9 +22,9 @@ class Game
     @cats_game
   end
 
-  def won?
+  def won?(player)
     WIN_CONDITIONS.any? do |condition| 
-      condition.all? { |i| @board_state[i] == @inactive_player.token } 
+      condition.all? { |i| @board_state[i] == player.token } 
     end
   end
 
@@ -33,7 +35,7 @@ class Game
     chosen_slot = space_validation
 
     update_board_state(@active_player, chosen_slot)
-    @cats_game = true unless @board_state.any? { |cell| cell == ' ' }
+    @cats_game = true if @board_state.none? { |cell| cell == ' ' } && !won?(@active_player)
     @active_player, @inactive_player = @inactive_player, @active_player
   end
 

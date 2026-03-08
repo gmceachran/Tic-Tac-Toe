@@ -17,6 +17,8 @@ module Utils
     pause(seconds)
   end
 
+  # do we have general validation for prompt?
+    # basically a method that gets passed a data type as an argument and evaluates based off of that type
   def prompt(prompt='Not quite, try again:')
     puts
     puts prompt
