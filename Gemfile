@@ -5,3 +5,7 @@ source "https://rubygems.org"
 # gem "rails"
 
 gem 'rubocop', require: false
+
+group :development, :test do
+  gem "rspec"
+end
